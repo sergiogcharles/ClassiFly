@@ -5,8 +5,8 @@
 
 **Here’s the final result:**
 
-![Loading page](loading_page.jpg =150x250)
+![Loading page](loading_page.jpg | width=100)
 
-![Upload page](upload_page.jpg =150x250)
+![Upload page](upload_page.jpg | width=100)
 
-![Loading page](classification_page.JPG =150x250)
+![Loading page](classification_page.JPG | width=100)

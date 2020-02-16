@@ -5,8 +5,8 @@
 
 **Here’s the final result:**
 
-![Loading page](loading_page.jpg | width=100)
+![Loading page](loading_page.jpg)
 
-![Upload page](upload_page.jpg | width=100)
+![Upload page](upload_page.jpg)
 
-![Loading page](classification_page.JPG | width=100)
+![Loading page](classification_page.JPG)

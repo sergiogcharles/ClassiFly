@@ -1,11 +1,11 @@
 # ClassiFly - CoreML
->Training a model to detect Yellow Fever in an iOS application
+>Training a Core ML model to detect Yellow Fever with an iOS application, ClassiFly!
 
 ## Final Result:
 
 **Here’s the final result:**
 
-![Loading page](loading_page "Final loading page")
+![Loading page](loading_page.jpg "Final loading page")
 
 ![Upload page](upload_page.jpg "Final upload page")
 

@@ -5,8 +5,8 @@
 
 **Here’s the final result:**
 
-![Loading page](loading_page.jpg "Final loading page")
+![Loading page](loading_page.jpg "Final loading page" =150x250)
 
-![Upload page](upload_page.jpg "Final upload page")
+![Upload page](upload_page.jpg "Final upload page" =150x250)
 
-![Loading page](classification_page.JPG "Final classification page")
+![Loading page](classification_page.JPG "Final classification page" =150x250)

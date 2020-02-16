@@ -1,6 +1,6 @@
 //
-//  CouscousImageViewController.swift
-//  CouscousOrNotCouscous
+//  ClassificationViewController.swift
+//  ClassiFly
 //
 //  Created by Sergio Charles on 15-02-2020.
 //  Copyright © 2020 Sergio Charles. All rights reserved.
@@ -9,14 +9,7 @@
 import UIKit
 
 class ClassificationViewController: UIViewController {
-    
-//    let isOrNotCouscous: UIImageView = {
-//        let image = UIImageView(image: UIImage())
-//        image.translatesAutoresizingMaskIntoConstraints = false
-//        image.contentMode = .scaleToFill
-//        return image
-//    }()
-//
+
     let selectedImage: UIImageView = {
        let image = UIImageView(image: UIImage())
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -71,7 +64,7 @@ class ClassificationViewController: UIViewController {
         dissmissButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         dissmissButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         dissmissButton.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
-        dissmissButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
+        //dissmissButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
         
         // outcome label
         outcomeLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 40, paddingLeft: 20, paddingBottom: 0, paddingRight: 20)
@@ -79,19 +72,19 @@ class ClassificationViewController: UIViewController {
         // accurancy label
         accuracyLabel.anchor(top: outcomeLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 15, paddingLeft: 20, paddingBottom: 0, paddingRight: 20)
         
-        // selected image view
-        //selectedImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        //selectedImage.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        selectedImage.anchor(top: accuracyLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 5, paddingLeft: 5, paddingBottom: 0, paddingRight: 5)
-        selectedImage.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        //selectedImage.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
-        //selectedImage.heightAnchor.constraint(equalToConstant: 180).isActive = true
-//
-//        isOrNotCouscous.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        isOrNotCouscous.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
-//        isOrNotCouscous.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-//        isOrNotCouscous.heightAnchor.constraint(equalToConstant: 217).isActive = true
+                        
+        selectedImage.anchor(top: accuracyLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 0, height: 350)
         
+        selectedImage.image?.resizeImageToSize(targetSize: CGSize(width: view.frame.width - 20, height: 350))
+        
+        dissmissButton.anchor(top: selectedImage.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        
+        
+        
+        //selectedImage.anchor(top: accuracyLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 5, paddingLeft: 5, paddingBottom: 0, paddingRight: 5)
+        //selectedImage.heightAnchor.constraint(equalToConstant: 100).isActive = true
+  
     }
     
     @objc func buttonToDissmiss(_ sender: BtnPleinLarge) {

@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  CouscousOrNotCouscous
+//  ClassiFly
 //
 //  Created by Sergio Charles on 15-02-2020.
 //  Copyright © 2020 Sergio Charles. All rights reserved.

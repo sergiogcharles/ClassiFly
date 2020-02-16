@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  CouscousOrNotCouscous
+//  ClassiFly
 //
 //  Created by Sergio Charles on 15-02-2020.
 //  Copyright © 2020 Sergio Charles. All rights reserved.
@@ -15,12 +15,6 @@ let screenWidth = UIScreen.main.bounds.width
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         
-    
-//    let logo: UIImageView = {
-//        let image = UIImageView(image: #imageLiteral(resourceName: "couscous").resized(newSize: CGSize(width: screenWidth - 40, height: (screenWidth - 40)/1.6 )))
-//        image.translatesAutoresizingMaskIntoConstraints = false
-//       return image
-//    }()
     
     var imagePicker: UIImagePickerController!
 

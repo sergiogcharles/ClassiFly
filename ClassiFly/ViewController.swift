@@ -22,10 +22,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 //       return image
 //    }()
     
+    var imagePicker: UIImagePickerController!
+
+    
     let classifyLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 60)
-        label.textColor = UIColor(red: 17/255, green: 154/255, blue: 237/255, alpha: 1)
+        label.font = UIFont.boldSystemFont(ofSize: 45)
+        label.textColor = UIColor(red: 50/255, green: 205/255, blue: 50/255, alpha: 1)
         label.numberOfLines = 0
         label.text = "ClassiFly"
         label.textAlignment = .center
@@ -40,8 +43,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         button.setTitle("Upload an image", for: .normal)
         let icon = UIImage(named: "upload")?.resized(newSize: CGSize(width: 50, height: 50))
         button.addRightImage(image: icon!, offset: 30)
-        button.backgroundColor = #colorLiteral(red: 0.7098039216, green: 0.5137254902, blue: 0.5529411765, alpha: 1)
-        button.layer.borderColor = #colorLiteral(red: 0.7098039216, green: 0.5137254902, blue: 0.5529411765, alpha: 1).cgColor
+        button.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        button.layer.borderColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1).cgColor
         button.layer.shadowOpacity = 0.3
         button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
         button.layer.shadowOffset = CGSize(width: 1, height: 5)
@@ -64,8 +67,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         button.setTitle("Use drone picture", for: .normal)
         let icon = UIImage(named: "camera")?.resized(newSize: CGSize(width: 50, height: 50))
         button.addRightImage(image: icon!, offset: 30)
-        button.backgroundColor = #colorLiteral(red: 0.4274509804, green: 0.4078431373, blue: 0.4588235294, alpha: 1)
-        button.layer.borderColor = #colorLiteral(red: 0.4274509804, green: 0.4078431373, blue: 0.4588235294, alpha: 1).cgColor
+        button.backgroundColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
+        button.layer.borderColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1).cgColor
         button.layer.shadowOpacity = 0.3
         button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
         button.layer.shadowOffset = CGSize(width: 1, height: 5)
@@ -80,6 +83,31 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         return button
     }()
+    
+    let takePicture: BtnPleinLarge = {
+        let button = BtnPleinLarge()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(takePhoto), for: .touchUpInside)
+        button.setTitle("Take a photo", for: .normal)
+        let icon = UIImage(named: "camera")?.resized(newSize: CGSize(width: 50, height: 50))
+        button.addRightImage(image: icon!, offset: 30)
+        button.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        button.layer.borderColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1).cgColor
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+        button.layer.shadowOffset = CGSize(width: 1, height: 5)
+        button.layer.cornerRadius = 10
+        button.layer.shadowRadius = 8
+        button.layer.masksToBounds = true
+        button.clipsToBounds = false
+        button.contentHorizontalAlignment = .left
+        button.layoutIfNeeded()
+        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
+        button.titleEdgeInsets.left = 0
+        
+        return button
+    }()
+    
     
     var images: [UIImage]!
     
@@ -98,6 +126,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         view.addSubview(classifyLabel)
         view.addSubview(upload)
         view.addSubview(openCamera)
+        view.addSubview(takePicture)
     }
     
     func setupLayout() {
@@ -106,24 +135,33 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         //logo.topAnchor.constraint(equalTo: self.view.safeTopAnchor, constant: 60).isActive = true
         
         classifyLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        classifyLabel.topAnchor.constraint(equalTo: self.view.safeTopAnchor, constant: 120).isActive = true
+        classifyLabel.topAnchor.constraint(equalTo: self.view.safeTopAnchor, constant: 90).isActive = true
         
+        // upload
         upload.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         upload.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         upload.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
         upload.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
+        // open camera
         openCamera.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        openCamera.topAnchor.constraint(equalTo: upload.bottomAnchor, constant: 30).isActive = true
+        openCamera.topAnchor.constraint(equalTo: upload.bottomAnchor, constant: 15).isActive = true
         openCamera.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
         openCamera.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        
+        // take photo
+        takePicture.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        takePicture.topAnchor.constraint(equalTo: openCamera.bottomAnchor, constant: 15).isActive = true
+        takePicture.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
+        takePicture.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             
-            guard let model = try? VNCoreMLModel(for: ImageClassifier().model) else {
+            guard let model = try? VNCoreMLModel(for: ImageDiseaseClassifier().model) else {
                 fatalError("Unable to load model")
             }
             let request = VNCoreMLRequest(model: model) {[weak self] request, error in
@@ -136,15 +174,33 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 // depending on classification
                 
                 // Update the main UI thread with our result
+                
                 DispatchQueue.main.async {[weak self] in
-                    let controller = CouscousImageViewController()
-                    controller.couscousImage.image = pickedImage
-                    if topResult.identifier == "couscous" {
-                        controller.isOrNotCouscous.image = #imageLiteral(resourceName: "isCouscous")
+                    print("identifier: \(topResult.identifier)")
+                    let controller = ClassificationViewController()
+                    controller.selectedImage.image = pickedImage
+                    
+                    if topResult.identifier == "Healthy" {
+                        
+                        // set label to elephantiasis
+                        controller.outcomeLabel.text = "Diagnois: Healthy"
+                        controller.accuracyLabel.text = "Acurracy: \(topResult.confidence * 100)%"
+                        
                         self?.present(controller, animated: true)
-                        //self?.navigationController?.pushViewController(controller, animated: true)
+                    } else if topResult.identifier == "YellowFever" {
+                        
+                        // set label to elephantiasis
+                        controller.outcomeLabel.text = "Diagnois: Yellow Fever"
+                        controller.accuracyLabel.text = "Acurracy: \(topResult.confidence * 100)%"
+                        
+                        self?.present(controller, animated: true)
+                        
                     } else {
-                        controller.isOrNotCouscous.image = #imageLiteral(resourceName: "isNotCouscous")
+                        // default
+                        // set label to elephantiasis
+                        controller.outcomeLabel.text = "Diagnois: Indeterminant"
+                        controller.accuracyLabel.text = "Acurracy: \(topResult.confidence * 100)%"
+                        
                         self?.present(controller, animated: true)
                         //self?.navigationController?.pushViewController(controller, animated: true)
                     }
@@ -187,13 +243,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    @objc func takePhoto() {
+        imagePicker =  UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .camera
+
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
     @objc func loadInDroneImage() {
         
         queryLastPhoto(resizeTo: nil) { (image) in
             
             print("image is: \(image)")
             
-            guard let model = try? VNCoreMLModel(for: ImageClassifier().model) else {
+            guard let model = try? VNCoreMLModel(for: ImageDiseaseClassifier().model) else {
                     fatalError("Unable to load model")
                 }
                 let request = VNCoreMLRequest(model: model) {[weak self] request, error in
@@ -207,20 +271,36 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     
                     // Update the main UI thread with our result
                     DispatchQueue.main.async {[weak self] in
-                        print("identifier: \(topResult.identifier)")
-                        let controller = CouscousImageViewController()
-                        controller.couscousImage.image = image
-                        if topResult.identifier == "couscous" {
-                            controller.isOrNotCouscous.image = #imageLiteral(resourceName: "isCouscous")
-                            self?.present(controller, animated: true)
-                            //self?.navigationController?.pushViewController(controller, animated: true)
-                        } else {
-                            controller.isOrNotCouscous.image = #imageLiteral(resourceName: "isNotCouscous")
-                            self?.present(controller, animated: true)
-                            print("will push: \(controller)")
-                            //self?.navigationController?.pushViewController(controller, animated: true)
+                            print("identifier: \(topResult.identifier)")
+                            let controller = ClassificationViewController()
+                            controller.selectedImage.image = image
+                        
+                            
+                            if topResult.identifier == "Healthy" {
+                                
+                                // set label to elephantiasis
+                                controller.outcomeLabel.text = "Diagnois: Healthy"
+                                controller.accuracyLabel.text = "Acurracy: \(topResult.confidence * 100)%"
+                                
+                                self?.present(controller, animated: true)
+                            } else if topResult.identifier == "YellowFever" {
+                                
+                                // set label to elephantiasis
+                                controller.outcomeLabel.text = "Diagnois: Yellow Fever"
+                                controller.accuracyLabel.text = "Acurracy: \(topResult.confidence * 100)%"
+                                
+                                self?.present(controller, animated: true)
+                                
+                            } else {
+                                // default
+                                // set label to elephantiasis
+                                controller.outcomeLabel.text = "Diagnois: Indeterminant"
+                                controller.accuracyLabel.text = "Acurracy: \(topResult.confidence * 100)%"
+                                
+                                self?.present(controller, animated: true)
+                                //self?.navigationController?.pushViewController(controller, animated: true)
+                            }
                         }
-                    }
                 }
             
             guard let ciImage = CIImage(image: image!)
